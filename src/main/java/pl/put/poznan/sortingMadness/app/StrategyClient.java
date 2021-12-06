@@ -5,9 +5,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 
 @SpringBootApplication(scanBasePackages = {"pl.put.poznan.sortingMadness.rest"})
-public class SortingMadnessApplication {
+public class StrategyClient {
 
     public static void main(String[] args) {
-        SpringApplication.run(SortingMadnessApplication.class, args);
+        SpringApplication.run(StrategyClient.class, args);
     }
 }

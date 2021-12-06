@@ -2,10 +2,12 @@ package pl.put.poznan.sortingMadness.logic;
 
 /**
  * This is just an example to show that the logic should be outside the REST service.
+ * fddfdfsdfdfsdfs
  */
 public class SortingMadness {
 
     private final String[] numbers_array;
+
 
     public SortingMadness(String[] numbers_array){
         this.numbers_array = numbers_array;

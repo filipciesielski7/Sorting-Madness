@@ -13,7 +13,7 @@
 
     <groupId>pl.put.poznan</groupId>
     <artifactId>sorting-madness</artifactId>
-    <version>0.1</version>
+    <version>0.2</version>
     <packaging>jar</packaging>
 
 	<properties>
@@ -61,6 +61,23 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>javadoc</goal>
+                        </goals>
+                        <phase>install</phase>
+                    </execution>
+                </executions>
+                <version>3.0.0</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
             </plugin>
         </plugins>
     </build>
