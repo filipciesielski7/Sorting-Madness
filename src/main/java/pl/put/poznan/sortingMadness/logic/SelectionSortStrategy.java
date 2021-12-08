@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class SelectionSortStrategy implements SortStrategy {
 
     @Override
-    public ArrayList<Integer> sorting() {
-        return null;
+    public ArrayList<String> sorting(ArrayList<String> data_array) {
+        return data_array;
     }
 }
