@@ -11,7 +11,7 @@ public class SortContext {
         this.sortStrategy = sortStrategy;
     }
 
-    public ArrayList<String> sorting(ArrayList<String> data_array){
+    public int[] sorting(int[] data_array){
         return sortStrategy.sorting(data_array);
     }
 }

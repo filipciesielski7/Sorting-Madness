@@ -6,7 +6,7 @@ import pl.put.poznan.sortingMadness.logic.SortingMadness;
 
 import java.util.Arrays;
 
-
+// example -> http://localhost:8080/insertion/?numbers=5,4,3,2,1,4,2,5,6
 @RestController
 @RequestMapping("/{sorting_type}/")
 public class SortingMadnessController {

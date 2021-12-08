@@ -1,13 +1,9 @@
 package pl.put.poznan.sortingMadness.logic;
 
-import java.util.ArrayList;
-
 public class BubbleSortStrategy  implements SortStrategy {
 
     @Override
-    public ArrayList<String> sorting(ArrayList<String> data_array) {
-
-        int[] arr = data_array.stream().mapToInt(i -> Integer.parseInt(i)).toArray();
+    public int[] sorting(int[] arr) {
 
         int n = arr.length;
         for (int i = 0; i < n-1; i++)
@@ -19,12 +15,6 @@ public class BubbleSortStrategy  implements SortStrategy {
                     arr[j+1] = temp;
                 }
 
-        ArrayList <String> sorted_array = new ArrayList<String>();
-        for (int i : arr)
-        {
-            sorted_array.add(String.valueOf(i));
-        }
-
-        return sorted_array;
+        return arr;
     }
 }
