@@ -21,4 +21,20 @@ public class SelectionSortStrategy implements SortStrategy {
 
         return arr;
     }
+
+    @Override
+    public String[] sortingText(String[] array) {
+
+        for ( int j=0; j < array.length-1; j++ )
+        {
+            int min = j;
+            for ( int k=j+1; k < array.length; k++ )
+                if ( array[k].compareTo( array[min] ) < 0 ) min = k;
+
+            String temp = array[j];
+            array[j] = array[min];
+            array[min] = temp;
+        }
+        return array;
+    }
 }

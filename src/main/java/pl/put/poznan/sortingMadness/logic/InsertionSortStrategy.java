@@ -19,4 +19,25 @@ public class InsertionSortStrategy implements SortStrategy {
 
         return arr;
     }
+
+    @Override
+    public String[] sortingText(String[] arr) {
+        int f = arr.length;
+
+        String temp = "";
+
+        for(int i=0;i<f;i++) {
+            for (int j = i + 1; j < f; j++) {
+                if (arr[i].compareToIgnoreCase(arr[j]) > 0) {
+                    temp = arr[i];
+                    arr[i] = arr[j];
+                    arr[j] = temp;
+                }
+            }
+        }
+
+        return arr;
+    }
+
+
 }

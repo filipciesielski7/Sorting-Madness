@@ -6,19 +6,20 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pl.put.poznan.sortingMadness.logic.SortingMadness;
+import pl.put.poznan.sortingMadness.logic.SortingTextMadness;
 
 import java.time.Duration;
 import java.time.Instant;
 import java.util.Arrays;
 
-// example -> http://localhost:8080/insertion/?numbers=5,4,3,2,1,4,2,5,6
+
 @RestController
 @RequestMapping("/{sorting_type}/")
 public class SortingMadnessController {
 
     private static final Logger logger = LoggerFactory.getLogger(SortingMadnessController.class);
-    private SortingMadness result;
 
+    // example -> http://localhost:8080/insertion/?numbers=5,4,3,2,1,4,2,5,6
     @RequestMapping(method = RequestMethod.GET, produces = "application/json")
     public ResponseEntity<Object> get(@PathVariable String sorting_type,
                               @RequestParam(value="numbers", defaultValue="") String[] numbers) {
@@ -35,13 +36,42 @@ public class SortingMadnessController {
             return new ResponseEntity<>("Error! Bad Input", HttpStatus.BAD_REQUEST);
         }
         Instant finish = Instant.now();
-        long timeElapsed = Duration.between(start, finish).toMillis();
+        long timeElapsed = Duration.between(start, finish).toNanos() / 10000;
         // String result = sorter.sort(numbers);
         // StringResponse stringResponse = new StringResponse(sorter.sort(numbers));
-        result = new SortingMadness(sorting_type, sorted_table, timeElapsed);
-        logger.debug(Arrays.toString(result.getSorted_list()));
-        return new ResponseEntity<>(result, HttpStatus.OK);
+        sorter.setSorted_list(sorted_table);
+        sorter.setTimeElapsed(timeElapsed);
+        logger.debug(Arrays.toString(sorter.getSorted_list()));
+        return new ResponseEntity<>(sorter, HttpStatus.OK);
     }
+
+    // example -> http://localhost:8080/insertion/text/?strings=kota,ma,ala
+    @RequestMapping(value="/text/", method = RequestMethod.GET, produces = "application/json")
+    public ResponseEntity<Object> getString(@PathVariable String sorting_type,
+                                      @RequestParam(value="strings", defaultValue="") String[] strings) {
+
+        logger.debug(sorting_type);
+        logger.debug(Arrays.toString(strings));
+
+        // SortingMadness sorter = new SortingMadness(sorting_type);
+        SortingTextMadness sorter = new SortingTextMadness(sorting_type);
+        logger.debug(sorter.getSorting_type());
+        Instant start = Instant.now();
+        String [] sorted_table = sorter.sort(strings);
+        if (strings.equals("") || sorted_table.length == 0) {
+            return new ResponseEntity<>("Error! Bad Input", HttpStatus.BAD_REQUEST);
+        }
+        Instant finish = Instant.now();
+        long timeElapsed = Duration.between(start, finish).toNanos() / 10000;
+        // String result = sorter.sort(numbers);
+        // StringResponse stringResponse = new StringResponse(sorter.sort(numbers));
+        sorter.setSorted_list(sorted_table);
+        sorter.setTimeElapsed(timeElapsed);
+        logger.debug(Arrays.toString(sorter.getSorted_list()));
+        return new ResponseEntity<>(sorter, HttpStatus.OK);
+    }
+
+
 
     @RequestMapping(method = RequestMethod.POST, produces = "application/json")
     public ResponseEntity<Object> post(@RequestBody SortingInput json) {
@@ -61,9 +91,35 @@ public class SortingMadnessController {
             return new ResponseEntity<>("Error! Bad Input", HttpStatus.BAD_REQUEST);
         }
         Instant finish = Instant.now();
-        long timeElapsed = Duration.between(start, finish).toMillis();
-        result = new SortingMadness(json.getSortingType(), sorted_table, timeElapsed);
+        long timeElapsed = Duration.between(start, finish).toNanos() / 10000;
+        sorter.setSorted_list(sorted_table);
+        sorter.setTimeElapsed(timeElapsed);
 
-        return new ResponseEntity<>(result, HttpStatus.OK);
+        return new ResponseEntity<>(sorter, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/text/", method = RequestMethod.POST, produces = "application/json")
+    public ResponseEntity<Object> postText(@RequestBody SortingInput json) {
+
+        logger.debug(json.getSortingType());
+        logger.debug(Arrays.toString(json.getNumbers()));
+
+
+        // silly in api with db
+        SortingTextMadness sorter = new SortingTextMadness(json.getSortingType());
+
+
+        String [] sorted_table;
+        Instant start = Instant.now();
+        sorted_table = sorter.sort(json.getNumbers());
+        if (json.getNumbers().equals("") || sorted_table.length == 0) {
+            return new ResponseEntity<>("Error! Bad Input", HttpStatus.BAD_REQUEST);
+        }
+        Instant finish = Instant.now();
+        long timeElapsed = Duration.between(start, finish).toNanos() / 10000;
+        sorter.setSorted_list(sorted_table);
+        sorter.setTimeElapsed(timeElapsed);
+
+        return new ResponseEntity<>(sorter, HttpStatus.OK);
     }
 }

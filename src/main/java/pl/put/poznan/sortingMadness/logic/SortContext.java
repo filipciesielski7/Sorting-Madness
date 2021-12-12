@@ -1,9 +1,5 @@
 package pl.put.poznan.sortingMadness.logic;
 
-import pl.put.poznan.sortingMadness.logic.SortStrategy;
-
-import java.util.ArrayList;
-
 public class SortContext {
     private SortStrategy sortStrategy;
 
@@ -13,5 +9,9 @@ public class SortContext {
 
     public int[] sorting(int[] data_array){
         return sortStrategy.sorting(data_array);
+    }
+
+    public String[] sortingText(String[] data_array) {
+        return sortStrategy.sortingText(data_array);
     }
 }

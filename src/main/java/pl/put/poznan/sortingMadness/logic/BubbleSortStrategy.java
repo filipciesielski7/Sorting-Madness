@@ -17,4 +17,25 @@ public class BubbleSortStrategy  implements SortStrategy {
 
         return arr;
     }
+
+    @Override
+    public String[] sortingText(String[] arr) {
+        int n = arr.length;
+
+        String temp;
+
+        for (int j = 0; j < n - 1; j++)
+        {
+            for (int i = j + 1; i < n; i++)
+            {
+                if (arr[j].compareTo(arr[i]) > 0)
+                {
+                    temp = arr[j];
+                    arr[j] = arr[i];
+                    arr[i] = temp;
+                }
+            }
+        }
+        return arr;
+    }
 }
