@@ -3,23 +3,23 @@ package pl.put.poznan.sortingMadness.rest;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class SortingInput {
-    @JsonProperty("numbers")
-    private String[] numbers;
+    @JsonProperty("data")
+    private String[] data;
 
     @JsonProperty("sortingType")
     private String sortingType;
 
-    public SortingInput(@JsonProperty("numbers") String[] numbers, @JsonProperty("sortingType") String sortingType) {
+    public SortingInput(@JsonProperty("data") String[] data, @JsonProperty("sortingType") String sortingType) {
         this.sortingType = sortingType;
-        this.numbers = numbers;
+        this.data = data;
     }
 
-    public String[] getNumbers() {
-        return numbers;
+    public String[] getData() {
+        return data;
     }
 
-    public void setNumbers(String[] numbers) {
-        this.numbers = numbers;
+    public void setData(String[] data) {
+        this.data = data;
     }
 
     public String getSortingType() {
