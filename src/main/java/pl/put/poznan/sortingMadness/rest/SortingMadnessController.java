@@ -1,5 +1,6 @@
 package pl.put.poznan.sortingMadness.rest;
 
+import com.google.gson.Gson;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.slf4j.Logger;
@@ -142,31 +143,41 @@ public class SortingMadnessController {
     public ResponseEntity<Object> postObject(@RequestBody SortingInputObject json) {
 
         logger.debug(json.getSortingType());
-        logger.debug(json.getData().toString());
+        logger.debug(new Gson().toJson(json.getData()));
         JSONObject data_array = new JSONObject(json);
 
         // silly in api with db
         SortingObjectMadness sorter = new SortingObjectMadness(data_array.get("sortingType").toString());
 
-        JSONArray sorted_table;
+        JSONObject[] sorted_table;
         Instant start = Instant.now();
-        sorted_table = sorter.sort((JSONArray) data_array.get("data"), data_array.get("sortingAttribute").toString());
 
-//        if (json.getData().equals("") || sorted_table.length == 0) {
-//            logger.info("Error occurred");
-//            return new ResponseEntity<>("Error! Bad Input", HttpStatus.BAD_REQUEST);
-//        }
+        JSONObject[] arr = new JSONObject[((JSONArray) data_array.get("data")).length()];
+        for (int i = 0; i < ((JSONArray) data_array.get("data")).length(); i++) {
+            JSONObject object = ((JSONArray) data_array.get("data")).getJSONObject(i);
+            arr[i] = object;
+        }
+
+        sorted_table = sorter.sort(arr, data_array.get("sortingAttribute").toString());
+
+        if (((JSONArray) data_array.get("data")).length() == 0) {
+            logger.info("Error occurred");
+            return new ResponseEntity<>("Error! Bad Input", HttpStatus.BAD_REQUEST);
+        }
         Instant finish = Instant.now();
         long time_elapsed = Duration.between(start, finish).toNanos() / 10000;
 
-        System.out.println(sorted_table);
+        List<JSONObject> arr2 = new ArrayList<JSONObject>();
+        for(int i=0; i< sorted_table.length; i++){
+            arr2.add(sorted_table[i]);
+        }
 
-        sorter.setSorted_list(sorted_table.toString()); // ?
+        sorter.setSorted_list(arr2);
         sorter.setTimeElapsed(time_elapsed);
 
-//        logger.debug(Arrays.toString(sorter.getSorted_list()));
+        logger.debug(sorter.getSorted_list().toString());
         logger.info("Measured time: " + time_elapsed);
 
-        return new ResponseEntity<>(sorter, HttpStatus.OK);
+        return new ResponseEntity<>(new Gson().toJson(sorter), HttpStatus.OK);
     }
 }

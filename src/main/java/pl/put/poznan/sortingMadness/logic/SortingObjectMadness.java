@@ -1,16 +1,13 @@
 package pl.put.poznan.sortingMadness.logic;
 
-import com.fasterxml.jackson.databind.util.JSONPObject;
-import org.json.JSONArray;
 import org.json.JSONObject;
+import java.util.List;
 
-import java.time.Instant;
-import java.util.Iterator;
 
 public class SortingObjectMadness {
     private String sorting_type;
     private String sorting_attribute;
-    private String sorted_list;
+    private List<JSONObject> sorted_list;
     private long timeElapsed;
 
     public SortingObjectMadness() {
@@ -20,13 +17,13 @@ public class SortingObjectMadness {
         this.sorting_type = sorting_type;
     }
 
-    public SortingObjectMadness(String sorting_type, String sorted_list, long timeElapsed) {
+    public SortingObjectMadness(String sorting_type, List<JSONObject> sorted_list, long timeElapsed) {
         this.sorting_type = sorting_type;
         this.sorted_list = sorted_list;
         this.timeElapsed = timeElapsed;
     }
 
-    public JSONArray sort(JSONArray data_array, String sorting_attribute) {
+    public JSONObject[] sort(JSONObject[] data_array, String sorting_attribute) {
 
         SortContext context;
 
@@ -60,7 +57,7 @@ public class SortingObjectMadness {
             return context.sortingObject(data_array, sorting_attribute);
         }
 
-        return new JSONArray();
+        return new JSONObject[0];
 
     }
 
@@ -72,11 +69,11 @@ public class SortingObjectMadness {
         this.sorting_type = sorting_type;
     }
 
-    public String getSorted_list() {
+    public List<JSONObject> getSorted_list() {
         return sorted_list;
     }
 
-    public void setSorted_list(String sorted_list) {
+    public void setSorted_list(List<JSONObject> sorted_list) {
         this.sorted_list = sorted_list;
     }
 

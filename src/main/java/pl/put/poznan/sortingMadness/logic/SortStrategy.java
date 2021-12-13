@@ -1,7 +1,6 @@
 package pl.put.poznan.sortingMadness.logic;
 
-
-import org.json.JSONArray;
+import org.json.JSONObject;
 
 /**
  * Sort strategy
@@ -35,5 +34,5 @@ public interface SortStrategy {
      *            is the name of the sorting based on attribute.
      * @return sorted objects array.
      */
-    public JSONArray sortingObject(JSONArray data_array, String sorting_attribute);
+    public JSONObject[] sortingObject(JSONObject[] data_array, String sorting_attribute);
 }

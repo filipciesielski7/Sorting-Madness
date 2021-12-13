@@ -1,6 +1,7 @@
 package pl.put.poznan.sortingMadness.logic;
 
-import org.json.JSONArray;
+import org.json.JSONObject;
+
 
 public class SelectionSortStrategy implements SortStrategy {
 
@@ -41,7 +42,7 @@ public class SelectionSortStrategy implements SortStrategy {
     }
 
     @Override
-    public JSONArray sortingObject(JSONArray data_array, String sorting_attribute) {
+    public JSONObject[] sortingObject(JSONObject[] data_array, String sorting_attribute) {
         return data_array;
     }
 }

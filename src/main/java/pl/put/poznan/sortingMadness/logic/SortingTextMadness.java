@@ -1,8 +1,5 @@
 package pl.put.poznan.sortingMadness.logic;
 
-import com.fasterxml.jackson.databind.util.JSONPObject;
-
-import java.time.Instant;
 
 public class SortingTextMadness {
     private String sorting_type;
