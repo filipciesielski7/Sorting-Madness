@@ -42,7 +42,7 @@ public class SortingMadnessController {
             return new ResponseEntity<>("Error! Bad Input", HttpStatus.BAD_REQUEST);
         }
         Instant finish = Instant.now();
-        long time_elapsed = Duration.between(start, finish).toNanos() / 10000;
+        long time_elapsed = Duration.between(start, finish).toMillis();
 
         sorter.setSorted_list(sorted_table);
         sorter.setTime_elapsed(time_elapsed);
@@ -70,7 +70,7 @@ public class SortingMadnessController {
             return new ResponseEntity<>("Error! Bad Input", HttpStatus.BAD_REQUEST);
         }
         Instant finish = Instant.now();
-        long time_elapsed = Duration.between(start, finish).toNanos() / 10000;
+        long time_elapsed = Duration.between(start, finish).toMillis();
 
         sorter.setSorted_list(sorted_table);
         sorter.setTimeElapsed(time_elapsed);
@@ -105,7 +105,7 @@ public class SortingMadnessController {
             return new ResponseEntity<>("Error! Bad Input", HttpStatus.BAD_REQUEST);
         }
         Instant finish = Instant.now();
-        long time_elapsed = Duration.between(start, finish).toNanos() / 10000;
+        long time_elapsed = Duration.between(start, finish).toMillis();
 
         sorter.setSorted_list(sorted_table);
         sorter.setTime_elapsed(time_elapsed);
@@ -140,7 +140,7 @@ public class SortingMadnessController {
             return new ResponseEntity<>("Error! Bad Input", HttpStatus.BAD_REQUEST);
         }
         Instant finish = Instant.now();
-        long time_elapsed = Duration.between(start, finish).toNanos() / 10000;
+        long time_elapsed = Duration.between(start, finish).toMillis();
 
         sorter.setSorted_list(sorted_table);
         sorter.setTimeElapsed(time_elapsed);
@@ -212,7 +212,7 @@ public class SortingMadnessController {
             return new ResponseEntity<>("Error! Bad Input", HttpStatus.BAD_REQUEST);
         }
         Instant finish = Instant.now();
-        long time_elapsed = Duration.between(start, finish).toNanos() / 10000;
+        long time_elapsed = Duration.between(start, finish).toMillis();
 
         List<JSONObject> arr2 = new ArrayList<JSONObject>();
         for(int i=0; i< sorted_table.length; i++){
