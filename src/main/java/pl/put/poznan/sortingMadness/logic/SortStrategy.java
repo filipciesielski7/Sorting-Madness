@@ -1,6 +1,8 @@
 package pl.put.poznan.sortingMadness.logic;
 
 
+import java.util.List;
+
 /**
  * Sort strategy
  */
@@ -23,4 +25,7 @@ public interface SortStrategy {
      * @return sorted strings array.
      */
     public String[] sortingText(String[] data_array);
+
+    public List<Person> sortingObjects(List<Person> data_array, String field);
+
 }
