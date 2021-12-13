@@ -27,9 +27,9 @@ public class SortingMadnessController {
         logger.debug(sorting_type);
         logger.debug(Arrays.toString(numbers));
 
-        // SortingMadness sorter = new SortingMadness(sorting_type);
         SortingMadness sorter = new SortingMadness(sorting_type);
         logger.debug(sorter.getSorting_type());
+
         Instant start = Instant.now();
         int [] sorted_table = sorter.sort(numbers);
         if (numbers.equals("") || sorted_table.length == 0) {
@@ -37,13 +37,13 @@ public class SortingMadnessController {
             return new ResponseEntity<>("Error! Bad Input", HttpStatus.BAD_REQUEST);
         }
         Instant finish = Instant.now();
-        long timeElapsed = Duration.between(start, finish).toNanos() / 10000;
+        long time_elapsed = Duration.between(start, finish).toNanos() / 10000;
 
         sorter.setSorted_list(sorted_table);
-        sorter.setTimeElapsed(timeElapsed);
+        sorter.setTime_elapsed(time_elapsed);
 
         logger.debug(Arrays.toString(sorter.getSorted_list()));
-        logger.info("Measured time: " + timeElapsed);
+        logger.info("Measured time: " + time_elapsed);
 
         return new ResponseEntity<>(sorter, HttpStatus.OK);
     }
@@ -56,9 +56,9 @@ public class SortingMadnessController {
         logger.debug(sorting_type);
         logger.debug(Arrays.toString(strings));
 
-        // SortingMadness sorter = new SortingMadness(sorting_type);
         SortingTextMadness sorter = new SortingTextMadness(sorting_type);
         logger.debug(sorter.getSorting_type());
+
         Instant start = Instant.now();
         String [] sorted_table = sorter.sort(strings);
         if (strings.equals("") || sorted_table.length == 0) {
@@ -66,18 +66,16 @@ public class SortingMadnessController {
             return new ResponseEntity<>("Error! Bad Input", HttpStatus.BAD_REQUEST);
         }
         Instant finish = Instant.now();
-        long timeElapsed = Duration.between(start, finish).toNanos() / 10000;
+        long time_elapsed = Duration.between(start, finish).toNanos() / 10000;
 
         sorter.setSorted_list(sorted_table);
-        sorter.setTimeElapsed(timeElapsed);
+        sorter.setTimeElapsed(time_elapsed);
 
         logger.debug(Arrays.toString(sorter.getSorted_list()));
-        logger.info("Measured time: " + timeElapsed);
+        logger.info("Measured time: " + time_elapsed);
 
         return new ResponseEntity<>(sorter, HttpStatus.OK);
     }
-
-
 
     @RequestMapping(method = RequestMethod.POST, produces = "application/json")
     public ResponseEntity<Object> post(@RequestBody SortingInput json) {
@@ -85,10 +83,8 @@ public class SortingMadnessController {
         logger.debug(json.getSortingType());
         logger.debug(Arrays.toString(json.getData()));
 
-
         // silly in api with db
         SortingMadness sorter = new SortingMadness(json.getSortingType());
-
 
         int [] sorted_table;
         Instant start = Instant.now();
@@ -98,13 +94,13 @@ public class SortingMadnessController {
             return new ResponseEntity<>("Error! Bad Input", HttpStatus.BAD_REQUEST);
         }
         Instant finish = Instant.now();
-        long timeElapsed = Duration.between(start, finish).toNanos() / 10000;
+        long time_elapsed = Duration.between(start, finish).toNanos() / 10000;
 
         sorter.setSorted_list(sorted_table);
-        sorter.setTimeElapsed(timeElapsed);
+        sorter.setTime_elapsed(time_elapsed);
 
         logger.debug(Arrays.toString(sorter.getSorted_list()));
-        logger.info("Measured time: " + timeElapsed);
+        logger.info("Measured time: " + time_elapsed);
 
         return new ResponseEntity<>(sorter, HttpStatus.OK);
     }
@@ -115,10 +111,8 @@ public class SortingMadnessController {
         logger.debug(json.getSortingType());
         logger.debug(Arrays.toString(json.getData()));
 
-
         // silly in api with db
         SortingTextMadness sorter = new SortingTextMadness(json.getSortingType());
-
 
         String [] sorted_table;
         Instant start = Instant.now();
@@ -128,13 +122,13 @@ public class SortingMadnessController {
             return new ResponseEntity<>("Error! Bad Input", HttpStatus.BAD_REQUEST);
         }
         Instant finish = Instant.now();
-        long timeElapsed = Duration.between(start, finish).toNanos() / 10000;
+        long time_elapsed = Duration.between(start, finish).toNanos() / 10000;
 
         sorter.setSorted_list(sorted_table);
-        sorter.setTimeElapsed(timeElapsed);
+        sorter.setTimeElapsed(time_elapsed);
 
         logger.debug(Arrays.toString(sorter.getSorted_list()));
-        logger.info("Measured time: " + timeElapsed);
+        logger.info("Measured time: " + time_elapsed);
 
         return new ResponseEntity<>(sorter, HttpStatus.OK);
     }

@@ -1,7 +1,18 @@
 package pl.put.poznan.sortingMadness.logic;
 
+
+/**
+ * Bubble sort
+ */
 public class BubbleSortStrategy  implements SortStrategy {
 
+    /**
+     * Numbers array sorting.
+     *
+     * @param arr
+     *            is the name of the data input numbers array.
+     * @return sorted numbers array.
+     */
     @Override
     public int[] sorting(int[] arr) {
 
@@ -18,6 +29,13 @@ public class BubbleSortStrategy  implements SortStrategy {
         return arr;
     }
 
+    /**
+     * Strings array sorting.
+     *
+     * @param arr
+     *            is the name of the data input strings array.
+     * @return sorted strings array.
+     */
     @Override
     public String[] sortingText(String[] arr) {
         int n = arr.length;
