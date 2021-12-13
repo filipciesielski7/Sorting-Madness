@@ -26,23 +26,53 @@ public class SelectionSortStrategy implements SortStrategy {
     }
 
     @Override
-    public String[] sortingText(String[] array) {
+    public String[] sortingText(String[] arr) {
 
-        for ( int j=0; j < array.length-1; j++ )
+        for ( int j=0; j < arr.length-1; j++ )
         {
             int min = j;
-            for ( int k=j+1; k < array.length; k++ )
-                if ( array[k].compareTo( array[min] ) < 0 ) min = k;
+            for ( int k=j+1; k < arr.length; k++ )
+                if ( arr[k].compareTo( arr[min] ) < 0 ) min = k;
 
-            String temp = array[j];
-            array[j] = array[min];
-            array[min] = temp;
+            String temp = arr[j];
+            arr[j] = arr[min];
+            arr[min] = temp;
         }
-        return array;
+        return arr;
     }
 
     @Override
-    public JSONObject[] sortingObject(JSONObject[] data_array, String sorting_attribute) {
-        return data_array;
+    public JSONObject[] sortingObject(JSONObject[] arr, String sorting_attribute) {
+        if(arr[0].get(sorting_attribute) instanceof Integer) {
+            int n = arr.length;
+
+            for (int i = 0; i < n-1; i++)
+            {
+                int min_idx = i;
+                for (int j = i+1; j < n; j++)
+                    if (arr[j].getInt(sorting_attribute) < arr[min_idx].getInt(sorting_attribute))
+                        min_idx = j;
+
+                JSONObject temp = arr[min_idx];
+                arr[min_idx] = arr[i];
+                arr[i] = temp;
+            }
+
+            return arr;
+        }
+        else if(arr[0].get(sorting_attribute) instanceof String){
+            for ( int j=0; j < arr.length-1; j++ )
+            {
+                int min = j;
+                for ( int k=j+1; k < arr.length; k++ )
+                    if ( arr[k].getString(sorting_attribute).compareTo(arr[min].getString(sorting_attribute)) < 0 ) min = k;
+
+                JSONObject temp = arr[j];
+                arr[j] = arr[min];
+                arr[min] = temp;
+            }
+            return arr;
+        }
+        return arr;
     }
 }
