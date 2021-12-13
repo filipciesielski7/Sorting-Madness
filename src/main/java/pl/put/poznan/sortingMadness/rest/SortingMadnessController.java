@@ -225,6 +225,9 @@ public class SortingMadnessController {
         logger.debug(sorter.getSorted_list().toString());
         logger.info("Measured time: " + time_elapsed);
 
-        return new ResponseEntity<>(new Gson().toJson(sorter), HttpStatus.OK);
+        JSONObject finalObj = new JSONObject(sorter);
+
+        // return new ResponseEntity<>(new Gson().toJson(sorter), HttpStatus.OK);
+        return new ResponseEntity<>(finalObj.toString(), HttpStatus.OK);
     }
 }
