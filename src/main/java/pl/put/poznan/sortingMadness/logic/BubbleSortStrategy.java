@@ -1,6 +1,9 @@
 package pl.put.poznan.sortingMadness.logic;
 
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 /**
  * Bubble sort
  */
@@ -54,6 +57,34 @@ public class BubbleSortStrategy  implements SortStrategy {
                 }
             }
         }
+        return arr;
+    }
+
+    /**
+     * Objects array sorting.
+     *
+     * @param arr
+     *            is the name of the data input objects array.
+     * @param sorting_attribute
+     *            is the name of the sorting based on attribute.
+     * @return sorted objects array.
+     */
+    @Override
+    public JSONArray sortingObject(JSONArray arr, String sorting_attribute) {
+        System.out.println(arr);
+        System.out.println(sorting_attribute);
+        System.out.println(arr.get(0));
+
+        JSONObject[] arr2 = new JSONObject[arr.length()];
+
+        for (int i = 0; i < arr.length(); i++) {
+            JSONObject row = arr.getJSONObject(i);
+            arr2[i] = row;
+        }
+
+        System.out.println(arr2[0].get(sorting_attribute));
+
+
         return arr;
     }
 }

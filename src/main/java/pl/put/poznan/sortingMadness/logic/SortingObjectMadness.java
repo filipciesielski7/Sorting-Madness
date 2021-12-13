@@ -1,65 +1,66 @@
 package pl.put.poznan.sortingMadness.logic;
 
 import com.fasterxml.jackson.databind.util.JSONPObject;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.time.Instant;
+import java.util.Iterator;
 
-public class SortingTextMadness {
+public class SortingObjectMadness {
     private String sorting_type;
-    private String[] sorted_list;
+    private String sorting_attribute;
+    private String sorted_list;
     private long timeElapsed;
 
-    public SortingTextMadness() {
+    public SortingObjectMadness() {
     }
 
-    public SortingTextMadness(String sorting_type){
+    public SortingObjectMadness(String sorting_type){
         this.sorting_type = sorting_type;
-
     }
 
-
-    public SortingTextMadness(String sorting_type, String[] sorted_list, long timeElapsed) {
+    public SortingObjectMadness(String sorting_type, String sorted_list, long timeElapsed) {
         this.sorting_type = sorting_type;
         this.sorted_list = sorted_list;
         this.timeElapsed = timeElapsed;
     }
 
-    public String[] sort(String[] data_array) {
+    public JSONArray sort(JSONArray data_array, String sorting_attribute) {
 
-        String [] data = data_array;
         SortContext context;
 
         if(sorting_type.toUpperCase().equals("BUBBLE")){
             context = new SortContext(new BubbleSortStrategy());
-            return context.sortingText(data);
+            return context.sortingObject(data_array, sorting_attribute);
         }
 
         else if(sorting_type.toUpperCase().equals("MERGE")) {
             context = new SortContext(new MergeSortStrategy());
-            return context.sortingText(data);
+            return context.sortingObject(data_array, sorting_attribute);
         }
 
         else if(sorting_type.toUpperCase().equals("COUNTING")) {
             context = new SortContext(new CountingSortStrategy());
-            return context.sortingText(data);
+            return context.sortingObject(data_array, sorting_attribute);
         }
 
         else if(sorting_type.toUpperCase().equals("INSERTION")) {
             context = new SortContext(new InsertionSortStrategy());
-            return context.sortingText(data);
+            return context.sortingObject(data_array, sorting_attribute);
         }
 
         else if(sorting_type.toUpperCase().equals("QUICK")) {
             context = new SortContext(new QuickSortStrategy());
-            return context.sortingText(data);
+            return context.sortingObject(data_array, sorting_attribute);
         }
 
         else if(sorting_type.toUpperCase().equals("SELECTION")) {
             context = new SortContext(new SelectionSortStrategy());
-            return context.sortingText(data);
+            return context.sortingObject(data_array, sorting_attribute);
         }
 
-        return new String[0];
+        return new JSONArray();
 
     }
 
@@ -71,11 +72,11 @@ public class SortingTextMadness {
         this.sorting_type = sorting_type;
     }
 
-    public String[] getSorted_list() {
+    public String getSorted_list() {
         return sorted_list;
     }
 
-    public void setSorted_list(String[] sorted_list) {
+    public void setSorted_list(String sorted_list) {
         this.sorted_list = sorted_list;
     }
 

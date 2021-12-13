@@ -1,5 +1,7 @@
 package pl.put.poznan.sortingMadness.logic;
 
+import org.json.JSONArray;
+
 import java.util.Arrays;
 
 
@@ -69,5 +71,10 @@ public class CountingSortStrategy implements SortStrategy {
             }
         }
         return arr;
+    }
+
+    @Override
+    public JSONArray sortingObject(JSONArray data_array, String sorting_attribute) {
+        return data_array;
     }
 }

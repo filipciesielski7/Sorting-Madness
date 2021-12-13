@@ -1,6 +1,8 @@
 package pl.put.poznan.sortingMadness.logic;
 
 
+import org.json.JSONArray;
+
 /**
  * Sort strategy
  */
@@ -23,4 +25,15 @@ public interface SortStrategy {
      * @return sorted strings array.
      */
     public String[] sortingText(String[] data_array);
+
+    /**
+     * Strings sorting.
+     *
+     * @param data_array
+     *            is the name of the data input objects array.
+     * @param sorting_attribute
+     *            is the name of the sorting based on attribute.
+     * @return sorted objects array.
+     */
+    public JSONArray sortingObject(JSONArray data_array, String sorting_attribute);
 }

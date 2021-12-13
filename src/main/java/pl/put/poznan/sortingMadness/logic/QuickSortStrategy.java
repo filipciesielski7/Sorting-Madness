@@ -1,5 +1,7 @@
 package pl.put.poznan.sortingMadness.logic;
 
+import org.json.JSONArray;
+
 public class QuickSortStrategy implements SortStrategy {
 
     @Override
@@ -14,6 +16,11 @@ public class QuickSortStrategy implements SortStrategy {
         int right = arr.length - 1;
         quickSortText(left, right, arr);
         return arr;
+    }
+
+    @Override
+    public JSONArray sortingObject(JSONArray data_array, String sorting_attribute) {
+        return data_array;
     }
 
     static void quickSort(int[] arr, int low, int high)

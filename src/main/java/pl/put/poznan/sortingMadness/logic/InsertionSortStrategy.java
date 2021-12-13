@@ -1,6 +1,8 @@
 package pl.put.poznan.sortingMadness.logic;
 
 
+import org.json.JSONArray;
+
 /**
  * Insertion sort
  */
@@ -55,6 +57,11 @@ public class InsertionSortStrategy implements SortStrategy {
         }
 
         return arr;
+    }
+
+    @Override
+    public JSONArray sortingObject(JSONArray data_array, String sorting_attribute) {
+        return data_array;
     }
 
 

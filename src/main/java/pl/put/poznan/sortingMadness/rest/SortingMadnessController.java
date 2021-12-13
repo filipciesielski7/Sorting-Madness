@@ -1,16 +1,21 @@
 package pl.put.poznan.sortingMadness.rest;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pl.put.poznan.sortingMadness.logic.SortingMadness;
+import pl.put.poznan.sortingMadness.logic.SortingObjectMadness;
 import pl.put.poznan.sortingMadness.logic.SortingTextMadness;
 
 import java.time.Duration;
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 
 @RestController
@@ -128,6 +133,38 @@ public class SortingMadnessController {
         sorter.setTimeElapsed(time_elapsed);
 
         logger.debug(Arrays.toString(sorter.getSorted_list()));
+        logger.info("Measured time: " + time_elapsed);
+
+        return new ResponseEntity<>(sorter, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/object/", method = RequestMethod.POST, produces = "application/json")
+    public ResponseEntity<Object> postObject(@RequestBody SortingInputObject json) {
+
+        logger.debug(json.getSortingType());
+        logger.debug(json.getData().toString());
+        JSONObject data_array = new JSONObject(json);
+
+        // silly in api with db
+        SortingObjectMadness sorter = new SortingObjectMadness(data_array.get("sortingType").toString());
+
+        JSONArray sorted_table;
+        Instant start = Instant.now();
+        sorted_table = sorter.sort((JSONArray) data_array.get("data"), data_array.get("sortingAttribute").toString());
+
+//        if (json.getData().equals("") || sorted_table.length == 0) {
+//            logger.info("Error occurred");
+//            return new ResponseEntity<>("Error! Bad Input", HttpStatus.BAD_REQUEST);
+//        }
+        Instant finish = Instant.now();
+        long time_elapsed = Duration.between(start, finish).toNanos() / 10000;
+
+        System.out.println(sorted_table);
+
+        sorter.setSorted_list(sorted_table.toString()); // ?
+        sorter.setTimeElapsed(time_elapsed);
+
+//        logger.debug(Arrays.toString(sorter.getSorted_list()));
         logger.info("Measured time: " + time_elapsed);
 
         return new ResponseEntity<>(sorter, HttpStatus.OK);

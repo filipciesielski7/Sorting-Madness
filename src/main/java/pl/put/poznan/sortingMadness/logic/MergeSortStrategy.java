@@ -1,5 +1,7 @@
 package pl.put.poznan.sortingMadness.logic;
 
+import org.json.JSONArray;
+
 public class MergeSortStrategy implements SortStrategy {
     @Override
     public int[] sorting(int[] arr) {
@@ -10,6 +12,11 @@ public class MergeSortStrategy implements SortStrategy {
     @Override
     public String[] sortingText(String[] data_array) {
         sortText(data_array);
+        return data_array;
+    }
+
+    @Override
+    public JSONArray sortingObject(JSONArray data_array, String sorting_attribute) {
         return data_array;
     }
 
