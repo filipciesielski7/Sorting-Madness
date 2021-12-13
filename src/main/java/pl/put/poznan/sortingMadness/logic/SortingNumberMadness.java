@@ -3,20 +3,20 @@ package pl.put.poznan.sortingMadness.logic;
 import java.util.stream.Stream;
 
 
-public class SortingMadness {
+public class SortingNumberMadness {
 
     private String sorting_type;
     private int[] sorted_list;
     private long time_elapsed;
 
-    public SortingMadness() {
+    public SortingNumberMadness() {
     }
 
-    public SortingMadness(String sorting_type){
+    public SortingNumberMadness(String sorting_type){
         this.sorting_type = sorting_type;
     }
 
-    public SortingMadness(String sorting_type, int[] sorted_list, long time_elapsed) {
+    public SortingNumberMadness(String sorting_type, int[] sorted_list, long time_elapsed) {
         this.sorting_type = sorting_type;
         this.sorted_list = sorted_list;
         this.time_elapsed = time_elapsed;
