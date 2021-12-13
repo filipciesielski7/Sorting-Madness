@@ -179,13 +179,18 @@ public class SortingMadnessController {
     @RequestMapping(value = "/object/", method = RequestMethod.POST, produces = "application/json")
     public ResponseEntity<Object> postObject(@RequestBody SortingInputObject json) {
 
+        JSONObject data_array = new JSONObject(json);
+        if (((JSONArray) data_array.get("data")).length() == 0) {
+            logger.info("Error occurred");
+            return new ResponseEntity<>("Error! Bad Input", HttpStatus.BAD_REQUEST);
+        }
+
         logger.debug(json.getSortingType());
         logger.debug(new Gson().toJson(json.getData()));
-        JSONObject data_array = new JSONObject(json);
 
         SortingObjectMadness sorter = new SortingObjectMadness(data_array.get("sortingType").toString());
 
-        JSONObject[] sorted_table;
+        JSONObject[] sorted_table = new JSONObject[0];
 
         JSONObject[] arr = new JSONObject[((JSONArray) data_array.get("data")).length()];
         for (int i = 0; i < ((JSONArray) data_array.get("data")).length(); i++) {
@@ -194,9 +199,15 @@ public class SortingMadnessController {
         }
 
         Instant start = Instant.now();
-        sorted_table = sorter.sort(arr, data_array.get("sortingAttribute").toString());
 
-        if (((JSONArray) data_array.get("data")).length() == 0) {
+        try{
+            sorted_table = sorter.sort(arr, data_array.get("sortingAttribute").toString());
+        }catch (Exception e){
+            logger.debug(e.toString());
+            return new ResponseEntity<>("Error! Bad Input", HttpStatus.BAD_REQUEST);
+        }
+
+        if (sorted_table.length == 0) {
             logger.info("Error occurred");
             return new ResponseEntity<>("Error! Bad Input", HttpStatus.BAD_REQUEST);
         }

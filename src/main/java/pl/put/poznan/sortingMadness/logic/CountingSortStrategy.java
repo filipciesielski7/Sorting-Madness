@@ -72,6 +72,15 @@ public class CountingSortStrategy implements SortStrategy {
         return arr;
     }
 
+    /**
+     * Objects array sorting.
+     *
+     * @param arr
+     *            is the name of the data input objects array.
+     * @param sorting_attribute
+     *            is the name of the sorting based on attribute.
+     * @return sorted objects array.
+     */
     @Override
     public JSONObject[] sortingObject(JSONObject[] arr, String sorting_attribute) {
         if(arr[0].get(sorting_attribute) instanceof Integer) {
