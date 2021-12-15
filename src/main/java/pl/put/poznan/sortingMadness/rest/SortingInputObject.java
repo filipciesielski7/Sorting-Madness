@@ -7,14 +7,14 @@ public class SortingInputObject {
     @JsonProperty("data")
     private Object data;
 
-    @JsonProperty("sortingType")
-    private String sortingType;
+    @JsonProperty("sortingTypes")
+    private Object sortingTypes;
 
     @JsonProperty("sortingAttribute")
     private String sortingAttribute;
 
-    public SortingInputObject(@JsonProperty("data") Object data, @JsonProperty("sortingType") String sortingType, @JsonProperty("sortingAttribute") String sortingAttribute) {
-        this.sortingType = sortingType;
+    public SortingInputObject(@JsonProperty("data") Object data, @JsonProperty("sortingTypes") Object sortingTypes, @JsonProperty("sortingAttribute") String sortingAttribute) {
+        this.sortingTypes = sortingTypes;
         this.data = data;
         this.sortingAttribute = sortingAttribute;
     }
@@ -27,15 +27,15 @@ public class SortingInputObject {
         this.data = data;
     }
 
-    public String getSortingType() {
-        return sortingType;
+    public Object getSortingTypes() {
+        return sortingTypes;
     }
 
-    public void setSortingType(String sortingType) {
-        this.sortingType = sortingType;
+    public void setSortingTypes(Object sortingTypes) {
+        this.sortingTypes = sortingTypes;
     }
 
-    public String getSortingAttribute() {
+    public Object getSortingAttribute() {
         return sortingAttribute;
     }
 
