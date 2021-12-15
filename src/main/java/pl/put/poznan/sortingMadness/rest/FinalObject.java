@@ -6,6 +6,7 @@ import java.util.List;
 
 public class FinalObject {
     private Object sorting_types;
+    private String[] sorting_string_types;
     private Object sorting_attribute;
     private List<JSONObject> sorted_list;
     private List<String> sorted_text_list;
@@ -28,6 +29,18 @@ public class FinalObject {
     public FinalObject(Object sorting_types, long[] time_elapsed_list, List<Integer> sorted_number_list) {
         this.sorting_types = sorting_types;
         this.sorted_number_list = sorted_number_list;
+        this.time_elapsed_list = time_elapsed_list;
+    }
+
+    public FinalObject(String[] sorting_string_types, List<Integer> sorted_number_list, long[] time_elapsed_list) {
+        this.sorting_string_types = sorting_string_types;
+        this.sorted_number_list = sorted_number_list;
+        this.time_elapsed_list = time_elapsed_list;
+    }
+
+    public FinalObject(String[] sorting_string_types, long[] time_elapsed_list, List<String> sorted_text_list) {
+        this.sorting_string_types = sorting_string_types;
+        this.sorted_text_list = sorted_text_list;
         this.time_elapsed_list = time_elapsed_list;
     }
 
@@ -77,5 +90,13 @@ public class FinalObject {
 
     public void setTime_elapsed_list(long[] time_elapsed_list) {
         this.time_elapsed_list = time_elapsed_list;
+    }
+
+    public String[] getSorting_string_types() {
+        return sorting_string_types;
+    }
+
+    public void setSorting_string_types(String[] sorting_string_types) {
+        this.sorting_string_types = sorting_string_types;
     }
 }
