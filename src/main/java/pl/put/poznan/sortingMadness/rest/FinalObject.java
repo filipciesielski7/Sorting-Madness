@@ -8,6 +8,8 @@ public class FinalObject {
     private Object sorting_types;
     private Object sorting_attribute;
     private List<JSONObject> sorted_list;
+    private List<String> sorted_text_list;
+    private List<Integer> sorted_number_list;
     private long[] time_elapsed_list;
 
     public FinalObject(Object sorting_types, Object sorting_attribute, List<JSONObject> sorted_list, long[] time_elapsed_list) {
@@ -17,9 +19,15 @@ public class FinalObject {
         this.time_elapsed_list = time_elapsed_list;
     }
 
-    public FinalObject(Object sorting_types, List<JSONObject> sorted_list, long[] time_elapsed_list) {
+    public FinalObject(Object sorting_types, List<String> sorted_text_list, long[] time_elapsed_list) {
         this.sorting_types = sorting_types;
-        this.sorted_list = sorted_list;
+        this.sorted_text_list = sorted_text_list;
+        this.time_elapsed_list = time_elapsed_list;
+    }
+
+    public FinalObject(Object sorting_types, long[] time_elapsed_list, List<Integer> sorted_number_list) {
+        this.sorting_types = sorting_types;
+        this.sorted_number_list = sorted_number_list;
         this.time_elapsed_list = time_elapsed_list;
     }
 
@@ -45,6 +53,22 @@ public class FinalObject {
 
     public void setSorted_list(List<JSONObject> sorted_list) {
         this.sorted_list = sorted_list;
+    }
+
+    public List<String> getSorted_text_list() {
+        return sorted_text_list;
+    }
+
+    public List<Integer> getSorted_number_list() {
+        return sorted_number_list;
+    }
+
+    public void setSorted_number_list(List<Integer> sorted_number_list) {
+        this.sorted_number_list = sorted_number_list;
+    }
+
+    public void setSorted_text_list(List<String> sorted_text_list) {
+        this.sorted_text_list = sorted_text_list;
     }
 
     public long[] getTime_elapsed_list() {

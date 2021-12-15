@@ -3,7 +3,6 @@ package pl.put.poznan.sortingMadness.rest;
 import com.google.gson.Gson;
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.json.JSONString;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -86,70 +85,128 @@ public class SortingMadnessController {
          example ->
          http://localhost:8080/
          {
-            "sortingType": "bubble",
-            "data": [5,4,3,2,1]
+            "sortingTypes": ["insertion", "bubble", "merge"],
+            "data": [5, 4, 3, 2, 1]
          }
      */
     @RequestMapping(method = RequestMethod.POST, produces = "application/json")
     public ResponseEntity<Object> post(@RequestBody SortingInput json) {
 
-        logger.debug(json.getSortingType());
-        logger.debug(Arrays.toString(json.getData()));
-
-        SortingNumberMadness sorter = new SortingNumberMadness(json.getSortingType());
-
-        int [] sorted_table;
-        Instant start = Instant.now();
-        sorted_table = sorter.sort(json.getData());
-        if (json.getData().equals("") || sorted_table.length == 0) {
-            logger.info("Error occurred");
-            return new ResponseEntity<>("Error! Bad Input", HttpStatus.BAD_REQUEST);
+        JSONObject jsonObject = new JSONObject(json);
+        if (((JSONArray) jsonObject.get("data")).length() == 0) {
+            logger.error("Error occurred - data array is empty");
+            return new ResponseEntity<>("Error! Bad input, data array can't be empty", HttpStatus.BAD_REQUEST);
         }
-        Instant finish = Instant.now();
-        long time_elapsed = Duration.between(start, finish).toMillis();
+        if (((JSONArray) jsonObject.get("sortingTypes")).length() == 0) {
+            logger.error("Error occurred - sorting types array is empty");
+            return new ResponseEntity<>("Error! Bad input, sorting types array can't be empty", HttpStatus.BAD_REQUEST);
+        }
 
-        sorter.setSorted_list(sorted_table);
-        sorter.setTime_elapsed(time_elapsed);
+        logger.info("Sorting types: " + new Gson().toJson(json.getSortingTypes()));
+        logger.info("Data: " + new Gson().toJson(json.getData()));
 
-        logger.debug(Arrays.toString(sorter.getSorted_list()));
-        logger.info("Measured time: " + time_elapsed);
+        int[] sortedData = new int[0];
+        long[] timeMeasurements = new long[((JSONArray) jsonObject.get("sortingTypes")).length()];
 
-        return new ResponseEntity<>(sorter, HttpStatus.OK);
+        int index = 0;
+        for (Object sorting_type : ((JSONArray) jsonObject.get("sortingTypes"))) {
+            SortingNumberMadness sorter = new SortingNumberMadness(sorting_type.toString());
+
+            Instant start = Instant.now();
+
+            try{
+                sortedData = sorter.sort(json.getData());
+            }catch (Exception e){
+                logger.error("Error occured - " + e.toString());
+                return new ResponseEntity<>("Error! Bad input, " + e.toString(), HttpStatus.BAD_REQUEST);
+            }
+
+            Instant finish = Instant.now();
+            long timeElapsed = Duration.between(start, finish).toMillis();
+            timeMeasurements[index++] = timeElapsed;
+        }
+
+        if (sortedData.length == 0) {
+            logger.error("Error occurred");
+            return new ResponseEntity<>("Error! Something went wrong with data sorting", HttpStatus.BAD_REQUEST);
+        }
+
+        List<Integer> sortedData2 = new ArrayList<Integer>();
+        for(int i = 0; i < sortedData.length; i++){
+            sortedData2.add(sortedData[i]);
+        }
+
+        FinalObject finalObject = new FinalObject(json.getSortingTypes(), timeMeasurements, sortedData2);
+
+        logger.info("Sorted number list: " + finalObject.getSorted_number_list().toString());
+        logger.info("Measured times: " + Arrays.toString(finalObject.getTime_elapsed_list()));
+
+        JSONObject finalObj = new JSONObject(finalObject);
+        return new ResponseEntity<>(finalObj.toString(), HttpStatus.OK);
     }
 
     /*
          example ->
          http://localhost:8080/text/
          {
-            "sortingType": "insertion",
-            "data": ["d", "e","c", "b", "a"]
+            "sortingTypes": ["quick", "bubble", "insertion"],
+            "data": ["d", "e", "c", "b", "a"]
          }
      */
     @RequestMapping(value = "/text/", method = RequestMethod.POST, produces = "application/json")
     public ResponseEntity<Object> postText(@RequestBody SortingInput json) {
 
-        logger.debug(json.getSortingType());
-        logger.debug(Arrays.toString(json.getData()));
-
-        SortingTextMadness sorter = new SortingTextMadness(json.getSortingType());
-
-        String [] sorted_table;
-        Instant start = Instant.now();
-        sorted_table = sorter.sort(json.getData());
-        if (json.getData().equals("") || sorted_table.length == 0) {
-            logger.info("Error occurred");
-            return new ResponseEntity<>("Error! Bad Input", HttpStatus.BAD_REQUEST);
+        JSONObject jsonObject = new JSONObject(json);
+        if (((JSONArray) jsonObject.get("data")).length() == 0) {
+            logger.error("Error occurred - data array is empty");
+            return new ResponseEntity<>("Error! Bad input, data array can't be empty", HttpStatus.BAD_REQUEST);
         }
-        Instant finish = Instant.now();
-        long time_elapsed = Duration.between(start, finish).toMillis();
+        if (((JSONArray) jsonObject.get("sortingTypes")).length() == 0) {
+            logger.error("Error occurred - sorting types array is empty");
+            return new ResponseEntity<>("Error! Bad input, sorting types array can't be empty", HttpStatus.BAD_REQUEST);
+        }
 
-        sorter.setSorted_list(sorted_table);
-        sorter.setTimeElapsed(time_elapsed);
+        logger.info("Sorting types: " + new Gson().toJson(json.getSortingTypes()));
+        logger.info("Data: " + new Gson().toJson(json.getData()));
 
-        logger.debug(Arrays.toString(sorter.getSorted_list()));
-        logger.info("Measured time: " + time_elapsed);
+        String[] sortedData = new String[0];
+        long[] timeMeasurements = new long[((JSONArray) jsonObject.get("sortingTypes")).length()];
 
-        return new ResponseEntity<>(sorter, HttpStatus.OK);
+        int index = 0;
+        for (Object sorting_type : ((JSONArray) jsonObject.get("sortingTypes"))) {
+            SortingTextMadness sorter = new SortingTextMadness(sorting_type.toString());
+
+            Instant start = Instant.now();
+
+            try{
+                sortedData = sorter.sort(json.getData());
+            }catch (Exception e){
+                logger.error("Error occured - " + e.toString());
+                return new ResponseEntity<>("Error! Bad input, " + e.toString(), HttpStatus.BAD_REQUEST);
+            }
+
+            Instant finish = Instant.now();
+            long timeElapsed = Duration.between(start, finish).toMillis();
+            timeMeasurements[index++] = timeElapsed;
+        }
+
+        if (sortedData.length == 0) {
+            logger.error("Error occurred");
+            return new ResponseEntity<>("Error! Something went wrong with data sorting", HttpStatus.BAD_REQUEST);
+        }
+
+        List<String> sortedData2 = new ArrayList<String>();
+        for(int i = 0; i < sortedData.length; i++){
+            sortedData2.add(sortedData[i]);
+        }
+
+        FinalObject finalObject = new FinalObject(json.getSortingTypes(), sortedData2, timeMeasurements);
+
+        logger.info("Sorted text list: " + finalObject.getSorted_text_list().toString());
+        logger.info("Measured times: " + Arrays.toString(finalObject.getTime_elapsed_list()));
+
+        JSONObject finalObj = new JSONObject(finalObject);
+        return new ResponseEntity<>(finalObj.toString(), HttpStatus.OK);
     }
 
     /*

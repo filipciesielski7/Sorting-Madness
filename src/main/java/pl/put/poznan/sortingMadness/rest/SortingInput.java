@@ -6,11 +6,11 @@ public class SortingInput {
     @JsonProperty("data")
     private String[] data;
 
-    @JsonProperty("sortingType")
-    private String sortingType;
+    @JsonProperty("sortingTypes")
+    private Object sortingTypes;
 
-    public SortingInput(@JsonProperty("data") String[] data, @JsonProperty("sortingType") String sortingType) {
-        this.sortingType = sortingType;
+    public SortingInput(@JsonProperty("data") String[] data, @JsonProperty("sortingTypes") Object sortingTypes) {
+        this.sortingTypes = sortingTypes;
         this.data = data;
     }
 
@@ -22,11 +22,11 @@ public class SortingInput {
         this.data = data;
     }
 
-    public String getSortingType() {
-        return sortingType;
+    public Object getSortingTypes() {
+        return sortingTypes;
     }
 
-    public void setSortingType(String sortingType) {
-        this.sortingType = sortingType;
+    public void setSortingTypes(Object sortingTypes) {
+        this.sortingTypes = sortingTypes;
     }
 }

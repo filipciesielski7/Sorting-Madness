@@ -14,7 +14,6 @@ public class SortingTextMadness {
 
     }
 
-
     public SortingTextMadness(String sorting_type, String[] sorted_list, long timeElapsed) {
         this.sorting_type = sorting_type;
         this.sorted_list = sorted_list;
