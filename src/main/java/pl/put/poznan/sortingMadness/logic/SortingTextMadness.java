@@ -4,7 +4,7 @@ package pl.put.poznan.sortingMadness.logic;
 public class SortingTextMadness {
     private String sorting_type;
     private String[] sorted_list;
-    private long timeElapsed;
+    private long time_elapsed;
 
     public SortingTextMadness() {
     }
@@ -14,10 +14,10 @@ public class SortingTextMadness {
 
     }
 
-    public SortingTextMadness(String sorting_type, String[] sorted_list, long timeElapsed) {
+    public SortingTextMadness(String sorting_type, String[] sorted_list, long time_elapsed) {
         this.sorting_type = sorting_type;
         this.sorted_list = sorted_list;
-        this.timeElapsed = timeElapsed;
+        this.time_elapsed = time_elapsed;
     }
 
     public String[] sort(String[] data_array) {
@@ -75,11 +75,11 @@ public class SortingTextMadness {
         this.sorted_list = sorted_list;
     }
 
-    public long getTimeElapsed() {
-        return timeElapsed;
+    public long getTime_elapsed() {
+        return time_elapsed;
     }
 
-    public void setTimeElapsed(long timeElapsed) {
-        this.timeElapsed = timeElapsed;
+    public void setTime_elapsed(long time_elapsed) {
+        this.time_elapsed = time_elapsed;
     }
 }

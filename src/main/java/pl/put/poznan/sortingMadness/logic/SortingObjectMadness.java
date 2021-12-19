@@ -8,7 +8,7 @@ public class SortingObjectMadness {
     private String sorting_type;
     private String sorting_attribute;
     private List<JSONObject> sorted_list;
-    private long timeElapsed;
+    private long time_elapsed;
 
     public SortingObjectMadness() {
     }
@@ -17,10 +17,10 @@ public class SortingObjectMadness {
         this.sorting_type = sorting_type;
     }
 
-    public SortingObjectMadness(String sorting_type, List<JSONObject> sorted_list, long timeElapsed) {
+    public SortingObjectMadness(String sorting_type, List<JSONObject> sorted_list, long time_elapsed) {
         this.sorting_type = sorting_type;
         this.sorted_list = sorted_list;
-        this.timeElapsed = timeElapsed;
+        this.time_elapsed = time_elapsed;
     }
 
     public JSONObject[] sort(JSONObject[] data_array, String sorting_attribute) {
@@ -77,11 +77,11 @@ public class SortingObjectMadness {
         this.sorted_list = sorted_list;
     }
 
-    public long getTimeElapsed() {
-        return timeElapsed;
+    public long getTime_elapsed() {
+        return time_elapsed;
     }
 
-    public void setTimeElapsed(long timeElapsed) {
-        this.timeElapsed = timeElapsed;
+    public void setTime_elapsed(long time_elapsed) {
+        this.time_elapsed = time_elapsed;
     }
 }
