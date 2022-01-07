@@ -3,9 +3,7 @@ package pl.put.poznan.sortingMadness.logic;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import pl.put.poznan.sortingMadness.rest.SortingInputObject;
 
 import java.util.Arrays;
 
