@@ -2,9 +2,18 @@ package pl.put.poznan.sortingMadness.logic;
 
 import org.json.JSONObject;
 
-
+/**
+ * Selection sort
+ */
 public class SelectionSortStrategy implements SortStrategy {
 
+    /**
+     * Numbers array sorting.
+     *
+     * @param arr
+     *            is the name of the data input numbers array.
+     * @return sorted numbers array.
+     */
     @Override
     public int[] sorting(int[] arr) {
 
@@ -25,6 +34,13 @@ public class SelectionSortStrategy implements SortStrategy {
         return arr;
     }
 
+    /**
+     * Strings array sorting.
+     *
+     * @param arr
+     *            is the name of the data input strings array.
+     * @return sorted strings array.
+     */
     @Override
     public String[] sortingText(String[] arr) {
 
@@ -41,6 +57,15 @@ public class SelectionSortStrategy implements SortStrategy {
         return arr;
     }
 
+    /**
+     * Objects array sorting.
+     *
+     * @param arr
+     *            is the name of the data input objects array.
+     * @param sorting_attribute
+     *            is the name of the sorting based on attribute.
+     * @return sorted objects array.
+     */
     @Override
     public JSONObject[] sortingObject(JSONObject[] arr, String sorting_attribute) {
         if(arr[0].get(sorting_attribute) instanceof Integer) {

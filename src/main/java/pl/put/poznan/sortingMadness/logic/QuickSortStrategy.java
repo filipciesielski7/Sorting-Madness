@@ -3,14 +3,31 @@ package pl.put.poznan.sortingMadness.logic;
 import org.json.JSONObject;
 
 
+/**
+ * Insertion sort
+ */
 public class QuickSortStrategy implements SortStrategy {
 
+    /**
+     * Numbers array sorting.
+     *
+     * @param arr
+     *            is the name of the data input numbers array.
+     * @return sorted numbers array.
+     */
     @Override
     public int[] sorting(int[] arr) {
         quickSort(arr, 0, arr.length-1);
         return arr;
     }
 
+    /**
+     * Strings array sorting.
+     *
+     * @param arr
+     *            is the name of the data input strings array.
+     * @return sorted strings array.
+     */
     @Override
     public String[] sortingText(String[] arr) {
         int left = 0;
@@ -19,6 +36,15 @@ public class QuickSortStrategy implements SortStrategy {
         return arr;
     }
 
+    /**
+     * Objects array sorting.
+     *
+     * @param arr
+     *            is the name of the data input objects array.
+     * @param sorting_attribute
+     *            is the name of the sorting based on attribute.
+     * @return sorted objects array.
+     */
     @Override
     public JSONObject[] sortingObject(JSONObject[] arr, String sorting_attribute) {
         if(arr[0].get(sorting_attribute) instanceof Integer) {
@@ -32,6 +58,16 @@ public class QuickSortStrategy implements SortStrategy {
         return arr;
     }
 
+    /**
+     * Numbers array main quick sort function.
+     *
+     * @param arr
+     *            is the name of the data input numbers array.
+     * @param low
+     *            starting index.
+     * @param high
+     *            ending index.
+     */
     static void quickSort(int[] arr, int low, int high)
     {
         if (low < high)
@@ -42,6 +78,16 @@ public class QuickSortStrategy implements SortStrategy {
         }
     }
 
+    /**
+     * Strings array main quick sort function.
+     *
+     * @param left
+     *            starting index.
+     * @param right
+     *            ending index.
+     * @param arr
+     *            is the name of the data input strings array.
+     */
     static void quickSortText(int left, int right, String[] arr) {
         if (left >= right)
             return;
@@ -52,6 +98,19 @@ public class QuickSortStrategy implements SortStrategy {
         quickSortText(partition+1, right, arr);
     }
 
+    /**
+     * Objects array main quick sort function.
+     *
+     * @param arr
+     *            is the name of the data input objects array.
+     * @param low
+     *            starting index.
+     * @param high
+     *            ending index.
+     * @param sorting_attribute
+     *            is the name of the integer sorting based on attribute.
+     * @return sorted objects array.
+     */
     static void quickSortObject(JSONObject[] arr, int low, int high, String sorting_attribute)
     {
         if (low < high)
@@ -62,6 +121,19 @@ public class QuickSortStrategy implements SortStrategy {
         }
     }
 
+    /**
+     * Objects array main quick sort function.
+     *
+     * @param left
+     *            starting index.
+     * @param right
+     *            ending index.
+     * @param arr
+     *            is the name of the data input objects array.
+     * @param sorting_attribute
+     *            is the name of the string sorting based on attribute.
+     * @return sorted objects array.
+     */
     static void quickSortObjectText(int left, int right, JSONObject[] arr, String sorting_attribute) {
         if (left >= right)
             return;
@@ -72,6 +144,16 @@ public class QuickSortStrategy implements SortStrategy {
         quickSortObjectText(partition+1, right, arr, sorting_attribute);
     }
 
+    /**
+     * A utility function to swap two elements in numbers array
+     *
+     * @param arr
+     *            is the name of the data input numbers array.
+     * @param i
+     *            is the index of first value to be swapped.
+     * @param j
+     *            is the index of second value to be swapped.
+     */
     static void swap(int[] arr, int i, int j)
     {
         int temp = arr[i];
@@ -79,12 +161,32 @@ public class QuickSortStrategy implements SortStrategy {
         arr[j] = temp;
     }
 
+    /**
+     * A utility function to swap two elements in strings array
+     *
+     * @param arr
+     *            is the name of the data input strings array.
+     * @param i
+     *            is the index of first value to be swapped.
+     * @param j
+     *            is the index of second value to be swapped.
+     */
     static void swapText(String[] arr, int i, int j) {
         String temp = arr[i];
         arr[i] = arr[j];
         arr[j] = temp;
     }
 
+    /**
+     * A utility function to swap two elements in objects array
+     *
+     * @param arr
+     *            is the name of the data input objects array.
+     * @param i
+     *            is the index of first value to be swapped.
+     * @param j
+     *            is the index of second value to be swapped.
+     */
     static void swapObject(JSONObject[] arr, int i, int j)
     {
         JSONObject temp = arr[i];
@@ -92,6 +194,25 @@ public class QuickSortStrategy implements SortStrategy {
         arr[j] = temp;
     }
 
+    /**
+     * Function to sort objects with string sorting based on
+     * attribute which takes last element as pivot, places
+     * the pivot element at its correct position in sorted
+     * array, and places all smaller (smaller than pivot)
+     * to left of pivot and all greater elements to right
+     * of pivot
+     *
+     * @param left
+     *            starting index.
+     * @param right
+     *            ending index.
+     * @param pivot
+     *            pivot element.
+     * @param arr
+     *            is the name of the data input objects array.
+     * @param sorting_attribute
+     *            is the name of the string sorting based on attribute.
+     */
     static int partition(int left, int right, JSONObject pivot, JSONObject[] arr, String sorting_attribute) {
         int leftCursor = left - 1;
         int rightCursor = right;
@@ -108,6 +229,20 @@ public class QuickSortStrategy implements SortStrategy {
         return leftCursor;
     }
 
+    /**
+     * Function to sort numbers array which takes last
+     * element as pivot, places the pivot element at its
+     * correct position in sorted array, and places all
+     * smaller (smaller than pivot) to left of pivot and
+     * all greater elements to right of pivot
+     *
+     * @param arr
+     *            is the name of the data input objects array.
+     * @param low
+     *            starting index.
+     * @param high
+     *            ending index.
+     */
     static int partition(int[] arr, int low, int high)
     {
         int pivot = arr[high];
@@ -125,6 +260,22 @@ public class QuickSortStrategy implements SortStrategy {
         return (i + 1);
     }
 
+    /**
+     * Function to sort strings array which takes last
+     * element as pivot, places the pivot element at its
+     * correct position in sorted array, and places all
+     * smaller (smaller than pivot) to left of pivot and
+     * all greater elements to right of pivot
+     *
+     * @param left
+     *            starting index.
+     * @param right
+     *            ending index.
+     * @param pivot
+     *            pivot element.
+     * @param arr
+     *            is the name of the data input strings array.
+     */
     static int partition(int left, int right, String pivot, String[] arr) {
         int leftCursor = left-1;
         int rightCursor = right;
@@ -141,6 +292,23 @@ public class QuickSortStrategy implements SortStrategy {
         return leftCursor;
     }
 
+    /**
+     * Function to sort objects with integer sorting based on
+     * attribute which takes last element as pivot, places
+     * the pivot element at its correct position in sorted
+     * array, and places all smaller (smaller than pivot)
+     * to left of pivot and all greater elements to right
+     * of pivot
+     *
+     * @param arr
+     *            is the name of the data input objects array.
+     * @param low
+     *            starting index.
+     * @param high
+     *            ending index.
+     * @param sorting_attribute
+     *            is the name of the integer sorting based on attribute.
+     */
     static int partitionObject(JSONObject[] arr, int low, int high, String sorting_attribute)
     {
         int pivot = arr[high].getInt(sorting_attribute);
@@ -158,6 +326,17 @@ public class QuickSortStrategy implements SortStrategy {
         return (i + 1);
     }
 
+    /**
+     * Function to get median from strings array
+     *
+     * @param left
+     *            starting index.
+     * @param right
+     *            ending index.
+     * @param arr
+     *            is the name of the data input strings array.
+     * @return strings array median element - pivot.
+     */
     static String getMedian(int left, int right, String[] arr) {
         int center = (left+right)/2;
 
@@ -172,6 +351,20 @@ public class QuickSortStrategy implements SortStrategy {
         return arr[right];
     }
 
+    /**
+     * Function to get median from objects array
+     * with string sorting based on attribute
+     *
+     * @param left
+     *            starting index.
+     * @param right
+     *            ending index.
+     * @param arr
+     *            is the name of the data input objects array.
+     * @param sorting_attribute
+     *            is the name of the string sorting based on attribute.
+     * @return objects array median element - pivot.
+     */
     static JSONObject getMedianObject(int left, int right, JSONObject[] arr, String sorting_attribute) {
         int center = (left+right)/2;
 
