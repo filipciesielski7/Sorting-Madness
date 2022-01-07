@@ -1,4 +1,4 @@
-![example workflow](https://github.com/filipciesielski7/Sorting-Madness/actions/workflows/ci.yml/badge.svg)
+![ci](https://github.com/filipciesielski7/Sorting-Madness/actions/workflows/ci.yml/badge.svg) ![text](https://github.com/filipciesielski7/Sorting-Madness/actions/workflows/test.yml/badge.svg)
 
 ## Sorting Madness
 
