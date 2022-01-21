@@ -30,8 +30,7 @@ pomocy biblioteki [JUnit](https://junit.org/junit5/).
 Projekt korzysta z Mavena, dlatego w celu uruchomienia go z terminala, wystarczy skorzystać z polecenia
 `mvn spring-boot:run`, a następnie używając adresu http://localhost:8080 wysyłać żądania GET i POST w celu sortowania danych.
 
-Możliwe jest również skorzystanie z wdrożonej wersji pod adresem https://sorting-madness.herokuapp.com/ lub
-zaimportowanie projektu do IDE według uznania, ponieważ projekt korzysta z Mavena.
+Możliwe jest również skorzystanie z wdrożonej wersji pod adresem https://sorting-madness.herokuapp.com/ lub zaimportowanie projektu do IDE według uznania, ponieważ projekt korzysta z Mavena.
 
 ## Jak korzystać?
 
@@ -85,3 +84,9 @@ http://localhost:8080/text/insertion,bubble,merge/?strings=kota,ma,ala
   "sortingAttribute": "a"
 }
 ```
+
+## Autorzy
+
+<a href="https://github.com/filipciesielski7/Sorting-Madness/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=filipciesielski7/Sorting-Madness" />
+</a>

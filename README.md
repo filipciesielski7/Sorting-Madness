@@ -6,15 +6,15 @@
 
 _Also available in: [Polski](README.pl.md)_
 
-## About 
+## About
 
-Sorting-Madness project for Software Engineering at Poznan University of Technology. The application implements 6 various sorting algorithms which can be used to sort different data sets using REST API and compare their sort times. Numeric data is sorted by standard, and text data - lexicographically. Strategy pattern was also implemented to select specific sorting method at runtime, as you can se on the [UML](https://en.wikipedia.org/wiki/Unified_Modeling_Language) diagram below.
+Sorting-Madness project for Software Engineering at Poznan University of Technology. The application implements 6 various sorting algorithms which can be used to sort different data sets using REST API and compare their sort times. Numeric data is sorted by standard, and text data - lexicographically. Strategy pattern was also implemented to select specific sorting method at runtime, as you can see in the [UML](https://en.wikipedia.org/wiki/Unified_Modeling_Language) diagram below.
 
 ![UML](./src/main/resources/Sorting-Madness-UML.png)
 
-The main goal of this project was to get to know [Scrum](https://en.wikipedia.org/wiki/Scrum_(software_development)) project management methodology ([Sprint](https://docs.google.com/spreadsheets/d/e/2PACX-1vTn6j3M8pmGEzrsQk8mXse7lVHUdhYWkfxbkQiYI23rBtwM4N3bWw0qtupW-gesfCkcYasnZ-eEXl-F/pubhtml)
+The main goal of this project was to get to know the [Scrum](<https://en.wikipedia.org/wiki/Scrum_(software_development)>) project management methodology ([Sprint](https://docs.google.com/spreadsheets/d/e/2PACX-1vTn6j3M8pmGEzrsQk8mXse7lVHUdhYWkfxbkQiYI23rBtwM4N3bWw0qtupW-gesfCkcYasnZ-eEXl-F/pubhtml)
 , [Product Backlog](https://docs.google.com/spreadsheets/d/1MwBEK283qNdv1wkT7OfIPgs4_kbdy4gXljwIPXqAN7Y/edit#gid=1176682582)
-) and implement REST API [Java](https://www.java.com/) [Spring Boot](https://spring.io/projects/spring-boot) application with [Maven](https://maven.apache.org/) which can be used by GET and POST requests. Additionally, [Javadoc](https://en.wikipedia.org/wiki/Javadoc) was created, mentioned [Strategy Pattern](https://en.wikipedia.org/wiki/Strategy_pattern) implemented and [JUnit](https://junit.org/junit5/) tests conducted.
+) and implement a REST API [Java](https://www.java.com/) [Spring Boot](https://spring.io/projects/spring-boot) application with [Maven](https://maven.apache.org/) which can be used by GET and POST requests. Additionally, [Javadoc](https://en.wikipedia.org/wiki/Javadoc) was created, the [Strategy Pattern](https://en.wikipedia.org/wiki/Strategy_pattern) implemented and [JUnit](https://junit.org/junit5/) tests conducted.
 
 ## Running the application
 
@@ -36,6 +36,7 @@ http://localhost:8080/insertion,bubble,merge/?numbers=5,4,3,2,1,4,2,5,6
 http://localhost:8080/text/<list of sorting algorithms>/?strings=<list of strings>
 http://localhost:8080/text/insertion,bubble,merge/?strings=kota,ma,ala
 ```
+
 ### POST Request
 
 ```json
@@ -46,14 +47,14 @@ http://localhost:8080/text/insertion,bubble,merge/?strings=kota,ma,ala
 ```
 
 ```json
- {
+{
   "sortingTypes": ["quick", "bubble", "insertion"],
   "data": ["d", "e", "c", "b", "a"]
 }
 ```
 
 ```json
- {
+{
   "sortingTypes": ["bubble", "quick", "insertion"],
   "data": [
     {
@@ -75,3 +76,9 @@ http://localhost:8080/text/insertion,bubble,merge/?strings=kota,ma,ala
   "sortingAttribute": "a"
 }
 ```
+
+## Contributors
+
+<a href="https://github.com/filipciesielski7/Sorting-Madness/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=filipciesielski7/Sorting-Madness" />
+</a>
